@@ -35,16 +35,26 @@ def write_modules():
         break
     
 ##upate array with header
-def update_csc_file():
-    print("this is all modules no header",all_modules)
-    print("this is modules with header",modules_header)
+def update_header_array():
     modules_header[1]=all_modules[0]
     modules_header[2]=all_modules[1]
     modules_header[3]=all_modules[2]
     modules_header[4]=all_modules[3]
-    print("this is modules with header",modules_header)
     
-##create report close file
+    
+##create report close file    ##error handling if report doesnt exsist = create
+    ##if exsists= overwriteit?
+def create_report():
+ try:
+    result_file_name="C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\Report.csv"
+    file_handler=open(result_file_name, "w")
+    print(modules_header)
+    for module in modules_header:
+     file_handler.write(module+ "\n")
+    file_handler.close()
+ except:
+        print("Error opening the file")
+        exit()
 
 def main():
     read_modules(file_path)
@@ -55,6 +65,7 @@ def main():
     print(f" 1) {all_modules[0]} 2) {all_modules[1]} 3) {all_modules[2]} 4) {all_modules[3]}")
     print("======= You're editing modules =========")
     write_modules()
-    update_csc_file()
+    update_header_array()
+    create_report()
 
 main()

@@ -3,6 +3,17 @@ all_modules=["","","",""] #no header, will show in menu option ##4
 modules_header=["","","","",""] #modules with header- will be  saved in report ##5
 file_path= "C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\Modules.csv"
 
+def show_all_modules():
+   for module in all_modules:
+       print(module.strip())
+
+def module_menu():
+    print("==============All modules===========")
+    show_all_modules() 
+    print("====================================")
+    #print(f" {i} {all_modules[i]} 2) {all_modules[1]} 3) {all_modules[2]} 4) {all_modules[3]}")
+    #print("======= You're editing modules =========")
+
 
 def read_modules(path):
     file_text= open(path, "r")
@@ -31,8 +42,9 @@ def write_modules():
         break
 
      if user_input>0 and user_input<4:
-        all_modules[user_input-1] =input("Enter new module name > ")
-        print(all_modules)
+        user_imput_str=input("Enter new module name > ")
+        all_modules[user_input-1] =user_imput_str
+        module_menu()
      else:
         print("Invalid input.")
         break
@@ -52,7 +64,7 @@ def create_report():
  try:
     result_file_name="C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\Report.csv"
     file_handler=open(result_file_name, "w")
-    print(modules_header)
+    #print(modules_header)
     for module in modules_header:
      file_handler.write(module+ "\n")
     file_handler.close()
@@ -61,13 +73,8 @@ def create_report():
         exit()
 
 def main():
-    #read_modules(file_path)
-
     organise_data()
-   ##menu visible in terminal
-    print("==============All modules===========")
-    print(f" 1) {all_modules[0]} 2) {all_modules[1]} 3) {all_modules[2]} 4) {all_modules[3]}")
-    print("======= You're editing modules =========")
+    module_menu()
     write_modules()
     update_header_array()
     create_report()

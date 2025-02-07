@@ -36,7 +36,7 @@ def organise_data():
 #this function edits module
 def write_modules():
     while(True):
-     user_input=int(input("Press [1 - 4] to edit module or 0 to create a report and exit > "))
+     user_input=int(input("Press [1 - 4] to edit module, 9 to create a report or 0 to exit > "))
 
      if user_input==0:
         break
@@ -45,8 +45,12 @@ def write_modules():
         user_imput_str=input("Enter new module name > ")
         all_modules[user_input-1] =user_imput_str
         module_menu()
+
+     if user_input==9 or user_input==9:
+        create_report()
+        break
      else:
-        print("Invalid input.")
+        print("⚠️ Invalid input.⚠️")
         break
     
 
@@ -64,10 +68,11 @@ def create_report():
  try:
     result_file_name="C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\Report.csv"
     file_handler=open(result_file_name, "w")
-    #print(modules_header)
+    
     for module in modules_header:
-     file_handler.write(module+ "\n")
+     file_handler.write(module+"\n")
     file_handler.close()
+    print("Report successfully created.") 
  except:
         print("Something went wrong😒. Make sure the file is not used by other users.")
         exit()

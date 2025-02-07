@@ -9,21 +9,23 @@ def read_modules(path):
     data_lines=file_text.readlines() ##this is a string
     return data_lines
    
+
 def organise_data():
     global all_modules
     global modules_header
-    data_lines=read_modules("C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\Modules.csv")
-    for i in range(4):
+    global file_path
+    data_lines=read_modules(file_path)
+    for i in range(len(all_modules)):##4
         all_modules[i]=data_lines[i+1]
         
-    for i in range(5):
+    for i in range(len(modules_header)):
         modules_header[i]=data_lines[i]
          
          
 #this function edits module
 def write_modules():
     while(True):
-     user_input=int(input("Press 1 to 4 to edit module or 0 to exit > "))
+     user_input=int(input("Press [1 - 4] to edit module or 0 to create a report and exit > "))
 
      if user_input==0:
         break
@@ -32,14 +34,16 @@ def write_modules():
         all_modules[user_input-1] =input("Enter new module name > ")
         print(all_modules)
      else:
+        print("Invalid input.")
         break
     
+
 ##upate array with header
 def update_header_array():
-    modules_header[1]=all_modules[0]
-    modules_header[2]=all_modules[1]
-    modules_header[3]=all_modules[2]
-    modules_header[4]=all_modules[3]
+    modules_header[1]=all_modules[0].strip()
+    modules_header[2]=all_modules[1].strip()
+    modules_header[3]=all_modules[2].strip()
+    modules_header[4]=all_modules[3].strip()
     
     
 ##create report close file    ##error handling if report doesnt exsist = create
@@ -53,11 +57,11 @@ def create_report():
      file_handler.write(module+ "\n")
     file_handler.close()
  except:
-        print("Error opening the file")
+        print("Something went wrong😒. Make sure the file is not used by other users.")
         exit()
 
 def main():
-    read_modules(file_path)
+    #read_modules(file_path)
 
     organise_data()
    ##menu visible in terminal

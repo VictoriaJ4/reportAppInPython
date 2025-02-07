@@ -24,16 +24,15 @@ def organise_data():
 def write_modules():
     while(True):
      user_input=int(input("Press 1 to 4 to edit module or 0 to exit > "))
-     chosen_module=all_modules[user_input]
-     print(chosen_module)
-    
+
+     if user_input==0:
+        break
+
      if user_input>0 and user_input<4:
-       all_modules[user_input] =input("Enter new module name > ")
-       print(all_modules)
+        all_modules[user_input-1] =input("Enter new module name > ")
+        print(all_modules)
      else:
-        exit
-    else:
-       exit
+        break
     
 ##upate array with header
 
@@ -43,11 +42,10 @@ def main():
     read_modules(file_path)
 
     organise_data()
-   
+   ##menu visible in terminal
     print("==============All modules===========")
-    print(all_modules[0],all_modules[1],all_modules[2], all_modules[3])
+    print(f" 1) {all_modules[0]} 2) {all_modules[1]} 3) {all_modules[2]} 4) {all_modules[3]}")
     print("======= You're editing modules =========")
-
     write_modules()
 
 main()

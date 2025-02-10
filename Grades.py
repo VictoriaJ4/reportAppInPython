@@ -46,10 +46,12 @@ def user_prompt():
    
 def user_grading_menu():
    answer_from_user=user_prompt()   
-
+   print("=========== Enrolled students ===========")
+   for index, student in enumerate(students_array, start=1):  
+        print(f"{index}. {student}")  
+   print("================")
    if answer_from_user=="y":
       user_number=input("Choose the student you want to grade [1-8] > ")
-      #print(user_number)
       return user_number
    elif answer_from_user=="n":
       exit()
@@ -66,19 +68,18 @@ def read_students_from_file():
    for module in student_lines[1:]:
        line=module.strip()
        students_array.append(line)
-
+   students_file.close()
    return students_array  
    
 
-
-
 def grade_student():
    student_ID=int(user_grading_menu())
-   
+   #we've got students and user chose student number
+   #user with this index will 
 
 def main():
     read_grades_file()
     read_students_from_file()
-    
+    user_grading_menu()
 
 main()

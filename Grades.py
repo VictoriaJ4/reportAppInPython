@@ -13,6 +13,7 @@ def read_grades_file():
      for line in data_lines:
         print(line.strip())
      grades_file.close()
+     print("==================================")
     except FileNotFoundError:
        print("File does not exsist, creating new file...")
        create_grades_file()
@@ -22,9 +23,9 @@ def create_grades_file():
    global grades_file_path
    grades_file=open(grades_file_path, "w")
    all_modules=get_modules()##this is an arrray
-   print(all_modules)
+   
    header_line = ",".join(all_modules) + "\n"        
-   grades_file.write(header_line)
+   grades_file.write(f"FirstName,LastName,Age,{header_line}")
    grades_file.close()
    print("File created successfully ✅") 
 

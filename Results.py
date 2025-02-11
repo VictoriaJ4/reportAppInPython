@@ -1,3 +1,4 @@
+import csv
 results_file_path="C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\results.csv"
 modules_file_path= "C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\Modules.csv"
 students_file_path= "C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\students.csv"
@@ -6,6 +7,8 @@ students_file_path= "C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\students.csv"
 modules=[]
 students=[]
 grades=[]
+results=[]
+
 
 #read modules from file
 def get_modules_from_file():
@@ -35,11 +38,13 @@ def results_header(modules):
   results_header = f"Firstname,Lastname,Age,{','.join(modules)}"
  print("header",results_header)
  return results_header
-    
+
+
+
 #enter student results
 def enter_student_results():
    # enter results for each student and each module
-   results=[]
+   global results
    students=read_students_file()
 
    for student in students:
@@ -52,38 +57,33 @@ def enter_student_results():
         
       results.append(result)
    print(results)
+   return results
 
+def write_results_file(results,header,results_file_path):
+   try:
+    result_file=open(results_file_path, "w")
+    writer = csv.writer(result_file)
+    writer.writerow(header.split(","))
 
-def read_results_file():##is there a results file?
-    try:##yes read it
-     results_file=open(results_file_path, "r")
-     data_lines=results_file.readlines()
-     results_file.close()
-     print(data_lines)
-     return(data_lines)
-    except FileNotFoundError:#no create it
-       print("File does not exsist, exiting...")
-       exit()
+    for result in results:
+        writer.writerow(result.split(","))
 
-def main_results_menu():
-    data_lines=read_results_file()
-    print("============== All results =========")
-    for line in data_lines:
-        print(line.strip())
-        
-    print("==================================")
+    result_file.close()
+    print(f"Results have been written to {results_file_path}")
+   except FileNotFoundError:
+     print("No file found. Create a file first.")
+     exit()
+   except PermissionError:
+     print("File error, another user is using this file. Try again later.")
+     exit()
 
-def user_prompt():
-   user_answer=input("Do you want to grade a student? [y/n]").lower()
-   return user_answer
-   
 
 def main():
  get_modules_from_file()
  #read_students_file()
- results_header(modules)
+ header=results_header(modules)
  enter_student_results()
-
+ write_results_file(results,header,results_file_path)
 
 
 main()

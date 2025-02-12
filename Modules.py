@@ -36,10 +36,10 @@ def organise_data():
         
         
     for i in range(len(modules_header)):
-        modules_header[i]=data_lines[i].strip()## strip here so it saves without \n in report
+        modules_header[i]=data_lines[i].strip()## strip here so it saves without \n in report later
          
          
-#this function edits module
+#this function edits modules
 def write_modules():
     while(True):
      user_input=int(input("Press [1 - 4] to edit module, 9 to save and create module report or 0 to exit > "))
@@ -52,21 +52,21 @@ def write_modules():
      elif user_input==0:
         break
      elif user_input==9 or user_input==9:
-        create_report()
+        create_report() ##user chose to save and create report
         break
-     else:
+     else: ##error handling user can only choose numbers 1-4, 9 or 0 no letters
         print("⚠️ Invalid input.⚠️")
         break
     
 
-##upate array with header
+##upate array with header, we need this to save into file with HEADER not only modules
 def update_header_array():
     modules_header[1]=all_modules[0].strip()
     modules_header[2]=all_modules[1].strip()
     modules_header[3]=all_modules[2].strip()
     modules_header[4]=all_modules[3].strip()
     
-
+##creates file writes changes added by user
 def create_report():
  global file_path
  try:

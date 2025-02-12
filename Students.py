@@ -1,20 +1,27 @@
 student_file_path="C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\students.csv"
 
+## reads all students from csv file
 def read_student_file():
  global student_file_path
  try:
     file_text= open(student_file_path, "r")##reads file
     data_lines=file_text.readlines()# gets file into lines
-    print("=========== All students ============")
-    for line in data_lines:
-       print(line.strip())
-    print("==================================")
+    ##calls function to show all students into terminal and passes data_lines
+    show_all_students(data_lines)
     file_text.close()##close the file
     checker_if_8()##this opens file again to check
  except FileNotFoundError:
     print("File does not exsist, creating new file...")
     create_student_file()
  
+##prints all students into terminal
+def show_all_students(data_lines):
+    data_lines= data_lines
+    print("=========== All students ============")
+    for line in data_lines[1:]:
+       print(line.strip())
+    print("==================================")
+    
 
 def create_student_file():
    global student_file_path
@@ -24,7 +31,7 @@ def create_student_file():
    file_text.close()
    print("File created successfully ✅")
    
- 
+ ## Prompts user and saves response into variables which are passed to insert_student_details function
 def get_student_details():
     while True:
      user_answer_add_student=input("Do you want to add student? [y/n]")
@@ -36,15 +43,20 @@ def get_student_details():
      else:
         exit()    
 
-
+## receives details typed by user and adds a new row with it in the students file
 def insert_student_details(name,lastname,age):
     student_info=[name,lastname,age]
-    file_text= open(student_file_path, "a")
-    file_text.write(",".join(student_info) + "\n")
-    file_text.close()
-    print("Student details added successfully.✅")
-    print("===============================")
-    
+    try:
+     file_text= open(student_file_path, "a")
+     file_text.write(",".join(student_info) + "\n")
+     file_text.close()
+     print("Student details added successfully.✅")
+     print("===============================")
+    except:
+       print("Coudln't save changes to the file. Try again.")
+       get_student_details()
+
+##reads student file and checks how many students are enrolled
 def checker_how_many_students():
    file_text= open(student_file_path, "r")##open file to read only
    file_lines=file_text.readlines()##add file into lines
@@ -58,7 +70,7 @@ def checker_how_many_students():
    file_text.close()
    return count_of_students
 
-
+##checking if there is 8 students (maximum of students enrolled is 8)
 def checker_if_8():
    student_count=checker_how_many_students()
    student_name, student_last_name, student_age = get_student_details()
@@ -70,9 +82,9 @@ def checker_if_8():
     print("Maximum number of students enrolled. ❌")
     exit()
 
-##we need only 8 students so we need a checker of how many students there are and if <8 add if more than 8 stop
+
 def main():
     read_student_file()
-
+    
 
 main()    

@@ -3,24 +3,29 @@ all_modules=["","","",""] #no header, will show in menu option ##4
 modules_header=["","","","",""] #modules with header- will be saved in report ##5
 file_path= "C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\Modules.csv"
 
+
+#shows menu for modules, calls show all modules 
 def show_all_modules():
-   for module in all_modules:
-       print(module.strip())
-
-def module_menu():
     print("==============All modules===========")
-    show_all_modules() 
+    for module in all_modules:
+       print(module.strip())
     print("====================================")
-    #print(f" {i} {all_modules[i]} 2) {all_modules[1]} 3) {all_modules[2]} 4) {all_modules[3]}")
-    #print("======= You're editing modules =========")
-
-
-def read_modules(path):
-    file_text= open(path, "r")
-    data_lines=file_text.readlines() ##this is a string
-    return data_lines
    
-
+# reads modules from the file (happening first), error handling added
+def read_modules(path):
+ try:
+     file_text= open(path, "r")
+     data_lines=file_text.readlines() ##this is a string
+     return data_lines
+ except FileNotFoundError:
+    print("File not found. Exiting...")
+    exit()
+ except FileExistsError:
+    print("Check if file exsist. Exiting...")
+    exit()
+    
+   
+## calls function read modules and saves data into variable, loops and pushes modules to array that is global
 def organise_data():
     global all_modules
     global modules_header
@@ -37,13 +42,13 @@ def organise_data():
 #this function edits module
 def write_modules():
     while(True):
-     user_input=int(input("Press [1 - 4] to edit module, 9 to create a report or 0 to exit > "))
+     user_input=int(input("Press [1 - 4] to edit module, 9 to save and create module report or 0 to exit > "))
 
      if user_input>0 and user_input<4:
         user_imput_str=input("Enter new module name > ")
         all_modules[user_input-1] =user_imput_str
         update_header_array()
-        module_menu()
+        show_all_modules()
      elif user_input==0:
         break
      elif user_input==9 or user_input==9:
@@ -78,7 +83,7 @@ def create_report():
 
 def main():
     organise_data()
-    module_menu()
+    show_all_modules()
     write_modules()
     
     

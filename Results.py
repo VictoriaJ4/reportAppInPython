@@ -67,6 +67,7 @@ def write_results_file(results,header,results_file_path):
 
     for result in results:
         writer.writerow(result.split(","))
+        print(result.split(","))
 
     result_file.close()
     print(f"Results have been written to {results_file_path}")

@@ -1,3 +1,4 @@
+import main
 student_file_path="C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\students.csv"
 
 ## reads all students from csv file
@@ -42,6 +43,7 @@ def get_student_details():
         insert_student_details(student_name,student_last_name, student_age)
      else:
         exit()    
+        
 
 ## receives details typed by user and adds a new row with it in the students file
 def insert_student_details(name,lastname,age):
@@ -87,4 +89,5 @@ def main():
     read_student_file()
     
 
-main()    
+if __name__ == "__main__":
+    main()  

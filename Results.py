@@ -87,4 +87,5 @@ def main():
  write_results_file(results,results_file_path)
 
 
-main()
+if __name__ == "__main__":
+    main()

@@ -86,6 +86,6 @@ def main():
     show_all_modules()
     write_modules()
     
-    
+if __name__ == "__main__":
+    main()
 
-main()

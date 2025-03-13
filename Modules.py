@@ -1,7 +1,15 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+results_file_path= os.getenv("RESULTS_FILE_PATH")
+file_path=os.getenv("MODULES_FILE_PATH")
+students_file_path=os.getenv("STUDENT_FILE_PATH")
+
 #global variables
 all_modules=["","","",""] #no header, will show in menu option ##4
 modules_header=["","","","",""] #modules with header- will be saved in report ##5
-file_path= "C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\Modules.csv"
+#file_path= "C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\Modules.csv"
 
 
 #shows menu for modules, calls show all modules 
@@ -31,6 +39,7 @@ def organise_data():
     global modules_header
     global file_path
     data_lines=read_modules(file_path) ##array of strings
+    print(data_lines)
     for i in range(len(all_modules)):##4
         all_modules[i]=data_lines[i+1].strip()
         

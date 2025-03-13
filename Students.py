@@ -1,12 +1,19 @@
 import main
-student_file_path="C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\students.csv"
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+student_file_path = os.getenv("STUDENT_FILE_PATH")
+
+
+print(f"Student file path: {student_file_path}")
 
 ## reads all students from csv file
 def read_student_file():
  global student_file_path
  try:
     file_text= open(student_file_path, "r")##reads file
-    data_lines=file_text.readlines()# gets file into lines
+    data_lines=file_text.readlines() # gets file into lines
     ##calls function to show all students into terminal and passes data_lines
     show_all_students(data_lines)
     file_text.close()##close the file

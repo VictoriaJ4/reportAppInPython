@@ -1,6 +1,15 @@
-results_file_path="C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\results.csv"
-modules_file_path= "C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\Modules.csv"
-students_file_path= "C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\students.csv"
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+results_file_path= os.getenv("RESULTS_FILE_PATH")
+modules_file_path=os.getenv("MODULES_FILE_PATH")
+students_file_path=os.getenv("STUDENT_FILE_PATH")
+
+
+# results_file_path="C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\results.csv"
+# modules_file_path= "C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\Modules.csv"
+# students_file_path= "C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\students.csv"
 
 #initially empty but we read filelines into these arrays
 modules=[]
@@ -36,9 +45,12 @@ def read_students_file():
 
 #define results header, gets modules that will be part of our header and adds few fields before it separated by commas
 def results_header(modules):
+ print("first from resultsssssss")
  for module in modules:
-  results_header = f"Firstname,Lastname,Age,{','.join(modules)}"
- return results_header
+  print("modulkess",modules)
+  header = f"Firstname,Lastname,Age,{','.join(modules)}"
+  print("hello header here",header)
+ return header
 
 
 #enter student results
@@ -54,10 +66,18 @@ def enter_student_results():
 
       for module in modules:
         marks=input(f"Please enter results for {module} >")
-        result +=","+ str(marks)
         
-      results.append(result)
-   return results
+        if marks.isdigit():
+         marks1=int(marks)
+         if marks1>=0 and marks1<101:
+          result +=","+ str(marks1)
+          results.append(result)
+          return results
+        else:
+          print("Invalid input, a mark needs to be numeric between 0-100.") 
+          exit() 
+      
+   
 
 #gets results from enter_students_results() and writing all into a file
 def write_results_file(results,results_file_path):

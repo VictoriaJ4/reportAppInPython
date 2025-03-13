@@ -1,5 +1,15 @@
-results_path="C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\results.csv"
-final_cert_path="C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\FinalGrades.csv"
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+final_cert_path = os.getenv("FINAL_CERT_PATH")
+results_path= os.getenv("RESULTS_FILE_PATH")
+
+print(f"Student file path: {final_cert_path}")
+
+
+# results_path="C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\results.csv"
+# final_cert_path="C:\\Users\\VictoriaJuszkiewicz(\\Desktop\\FinalGrades.csv"
 
 student_data=[]
 grades_array=[]

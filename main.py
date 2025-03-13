@@ -4,7 +4,7 @@ import Results
 import Grades
 
 def top_level_menu():
- print(" ================ Select option =============")
+ print("================ Select option =============")
  print(" 1) Modules")
  print(" 2) Students")
  print(" 3) Marks")

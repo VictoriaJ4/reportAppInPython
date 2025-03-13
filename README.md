@@ -30,3 +30,6 @@ Modules: Manage the modules (e.g., editing module details).
 Students: View, edit, and manage student data.
 Marks: Enter and update student results for each module.
 Grades: Generate a report based on the entered marks and other data.
+
+
+  ![baldurs](terminal.png)
